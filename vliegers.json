@@ -1,0 +1,3 @@
+---
+---
+{% assign vliegers=site.data.vliegers %}{{ vliegers | sort: 'Achternaam' | jsonify }}

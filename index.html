@@ -1,0 +1,127 @@
+--- 
+---
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ site.title }}</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="mask-icon" href="./safari-pinned-tab.svg" color="#81c458">
+    <link rel="shortcut icon" href="./favicon.ico">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#d9230f">
+
+    <style>{% include bootstrap.min.css %}</style>
+    <style>
+        section, header {
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>{{ site.title }}</h1>
+        <p>
+            {{ site.description }}
+        </p>
+    </header>
+    <main>
+        <section>
+            <h3>Squadrons met nederlandse piloten:</h3>
+            <ul>
+                <li>
+                    {% assign squadrons = site.data.raf-faa-squadrons-with-dutch-members.raf %}
+                    <h4 style="margin-bottom: 3px;"><abbr title="Royal Air Force">RAF</abbr></h4>
+                    {{ squadrons | join: ", " }}
+                </li>
+                <li>
+                    {% assign squadrons = site.data.raf-faa-squadrons-with-dutch-members.faa %}
+                    <h4 style="margin-bottom: 3px;"><abbr title="Fleet Air Arms">FAA</abbr></h4>
+                    {{ squadrons | join: ", " }}
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h3>Vrouwelijke vliegers in de <abbr title="Royal Air Force">RAF</abbr></h3>
+            <ul>
+                <li>
+                    <a href="#tr-696">Schuurman, Emma Mathilde</a>
+                    <br>
+                    <div style="float: left">
+                        <img height="300" src="images/louise_schuurman_1.jpg" alt="Shuurman tijdens theorie training in 1942.">
+                        <div>Shuurman tijdens theorie training in 1942.</div>
+                    </div>
+                    <div style="float: left; margin-left: 10px;">
+                        <img height="300" src="images/louise_schuurman_2.jpg" alt="Shuurman bij het ATA.">
+                        <div>Shuurman bij het <abbr title="Air Transport Auxiliary">ATA</abbr></div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p>
+                        Vlieger bij de ATA
+                    </p>
+                </li>
+                <li>
+                    <a href="#tr-786">Veldhuyzen van Zanten, Ida Laura</a>
+                    <a href="https://nl.wikipedia.org/wiki/Ida_Laura_Veldhuyzen_van_Zanten" target="_blank">Wikipedia</a>
+                    <br>
+                    <img height="300" src="images/ida-laura-veldhuyzen-van-zanten.jpg" alt="Ida Laura Veldhuyzen van Zanten.">
+                    <div>Ida Laura Veldhuyzen van Zanten.</div>
+                    <div class="clearfix"></div>
+                    <p>
+                        Vlieger bij de ATA
+                    </p>
+                    <ul>
+                        <li>Kruis van Verdienste </li>
+                        <li>Vliegerkruis</li>
+                        <li>Verzetsherdenkingskruis</li>
+                        <li>Defence Medal (Engeland) </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <p>
+                </small>
+                <a href="{{ '/vliegers.csv' | absolute_url }}" download="lijst-van-nederlandse-vliegers-bij-de-raf-en-de-faa-1940-1945.csv">Download voor Excel</a>
+                <br>
+                <small>Open Excel, Navigeer naar "Gegevens->Uit tekst/CSV" en open het gedownloade bestand. Selecteer bij "Oorspronkelijk
+                    bestand", "65001: Unicode (UTF-8)" en klik op "Laden".</small>
+                <br>
+                <a href="{{ '/vliegers.json' | absolute_url }}" download="lijst-van-nederlandse-vliegers-bij-de-raf-en-de-faa-1940-1945.json">Download JSON</a>
+            </p>
+            <p>
+                Lijst van Nederlandse vliegers bij de RAF en de FAA.
+            </p>
+            <small>Bron: <a target="_blank" href="https://www.defensie.nl/downloads/brochures/2013/11/15/vliegers-raf-en-faa">Defensie</a>
+        </section>
+        <div class="table-wrapper">
+            {% assign vliegers=site.data.vliegers %}
+            <table class="table table-hover table-responsive table-condensed">
+                <caption></caption>
+                <thead>
+                    {% for column in vliegers[0] %}
+                    <th>{{ column[0] }}</th>{% endfor %}
+                </thead>
+                <tbody style="height: 100vh">
+                    {% for row in vliegers %}
+                    {% assign i = forloop.index %}
+                    <tr id="tr-{{ i }}">
+                        {% for cell in row %}
+                        <td>{{ cell[1] }}</td>{% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+
+</html>

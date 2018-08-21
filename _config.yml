@@ -1,0 +1,13 @@
+---
+title: Nederlandse Oorlogsvliegers WW2
+timezone: Europe/Amsterdam
+url:
+baseurl:
+sass:
+  compressed: true
+description: Overzicht van nedelrands oorliegsvliegers van 1940 tot 1945 in het engelse leger (raf & faa)
+markdown: kramdown
+theme: minima
+plugins: 
+  - jekyll-seo-tag
+author: Sem Postma
